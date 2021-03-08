@@ -100,6 +100,7 @@ try:
 
             print("Publishing", int_value, "to Intensity Topic", topic_int, "\n")
             client.publish(topic_int, int_value)
+            sleep(1)
 
         except Exception as e:
             print("Error:", e)
