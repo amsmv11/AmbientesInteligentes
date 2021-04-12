@@ -1,6 +1,6 @@
 // // npm install mqtt --save
 // // npm install mqtt -g
-const getUpdate = (setState) => {
+const getUpdate = () => {
     var client;
   
     try{
@@ -20,7 +20,7 @@ const getUpdate = (setState) => {
   
         client.on('message', function(topic, message, packet) {
             console.log("message is " + message);
-            setState(message);
+            //setState(message);
             console.log("topic is " + topic);
         });
   
@@ -43,16 +43,16 @@ const getUpdate = (setState) => {
         });
     } catch (e) {
         console.log(e);
-    } finally {
-      client.end();
-    }
+        client.end();
+    } 
   
     
   
   };
   
-  export default getUpdate;
+//export default getUpdate;
   
+  getUpdate();
   
 
 
@@ -89,77 +89,82 @@ const getUpdate = (setState) => {
 
 
 // REACT NATIVE VERSION
-import React, { useState } from 'react';
-import { TouchableOpacity, Text, View, StyleSheet, Image, Button, Alert } from 'react-native';
+// import React, { useState } from 'react';
+// import { TouchableOpacity, Text, View, StyleSheet, Image, Button, Alert } from 'react-native';
+
+
+// const getUpdates = (setState) => {
+//   var client;
+//   try{
+//       var mqtt = require('mqtt');
+
+//       const options = {
+//           clientId:"mqttjs01",
+//           username:"steve",
+//           password:"password",
+//           clean:true
+//       };
+
+//       client = mqtt.connect("mqtt://broker.emqx.io");
+//       // "broker.emqx.io"
+//       // var client = mqtt.connect("broker.emqx.io", options);
+
+
+//       client.on('message', function(topic, message, packet) {
+//           console.log("message is " + message);
+//           setState(message);
+//           console.log("topic is " + topic);
+//       });
+
+
+//       client.on("connect", function() {
+//           console.log("connected");
+//       });
+
+//       var topic_list=["AmbInt/sensors/pot","AmbInt/sensors/temp","AmbInt/sensors/int"];
+//       client.subscribe(topic_list,{qos:1});
+//       // var topic_o = {"AmbInt/sensors/pot":1,"AmbInt/sensors/temp":1,"AmbInt/sensors/int":1};
+//       // client.subscribe(topic_o);
 
 
 
-const MqttClient = () => {
-  var client;
-  const [state, setState] = useState("");
-
-  try{
-      var mqtt = require('mqtt');
-
-      const options = {
-          clientId:"mqttjs01",
-          username:"steve",
-          password:"password",
-          clean:true
-      };
-
-      client = mqtt.connect("mqtt://broker.emqx.io");
-      // "broker.emqx.io"
-      // var client = mqtt.connect("broker.emqx.io", options);
-
-
-      client.on('message', function(topic, message, packet) {
-          console.log("message is " + message);
-          setState(message);
-          console.log("topic is " + topic);
-      });
-
-
-      client.on("connect", function() {
-          console.log("connected");
-      });
-
-      var topic_list=["AmbInt/sensors/pot","AmbInt/sensors/temp","AmbInt/sensors/int"];
-      client.subscribe(topic_list,{qos:1});
-      // var topic_o = {"AmbInt/sensors/pot":1,"AmbInt/sensors/temp":1,"AmbInt/sensors/int":1};
-      // client.subscribe(topic_o);
+//       //handle errors
+//       client.on("error",function(error){
+//           console.log("Can't connect" + error);
+//           process.exit(1)
+//       });
+//   } catch (e) {
+//       console.log(e);
+//       client.end();
+//   } 
+// };
 
 
 
-      //handle errors
-      client.on("error",function(error){
-          console.log("Can't connect" + error);
-          process.exit(1)
-      });
-  } catch (e) {
-      console.log(e);
-  } finally {
-    client.end();
-  }
+// const MqttClient = () => {
+//   const [state, setState] = useState("");
 
-  return (<Text style={styles.paragraph}>
-            {state}
-          </Text>);
+//   getUpdates(setState);
+  
 
-};
+//   return (<Text style={styles.paragraph}>
+//             {state || "EMPTY"}
+//           </Text>);
 
-export default MqttClient;
+// };
+
+// export default MqttClient;
 
 
-const styles = StyleSheet.create({
-  paragraph: {
-    margin: 24,
-    marginTop: 0,
-    fontSize: 14,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   paragraph: {
+//     margin: 24,
+//     marginTop: 0,
+//     fontSize: 14,
+//     fontWeight: 'bold',
+//     textAlign: 'center',
+//   },
+// });
 
 
 
