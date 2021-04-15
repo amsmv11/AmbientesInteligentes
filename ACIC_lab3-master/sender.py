@@ -89,7 +89,7 @@ try:
             # data = decoded_bytes.split(" ")
 
             temp_value = "32º"
-            pot_value = "40W"
+            pot_value = "40W de potencia"
             int_value = 11
 
             print("Publishing", temp_value, "to Temperature Topic", topic_temp)
@@ -101,7 +101,7 @@ try:
             print("Publishing", int_value, "to Intensity Topic", topic_int, "\n")
             client.publish(topic_int, int_value)
             
-            sleep(5)
+            sleep(30)
 
         except Exception as e:
             print("Error:", e)
