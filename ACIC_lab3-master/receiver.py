@@ -5,7 +5,7 @@ import serial
 
 # ser = serial.Serial('COM6', 115200, timeout=0.3)  # Establish the connection on a specific port
 
-topic_pot_led = "AmbInt/sensors/pot_led"     # Potenciometer Topic
+topic_AI = "AmbInt/Lamp"     # Potenciometer Topic
 topic_temp_led = "AmbInt/sensors/temp_led"   # Temperature Topic
 topic_int_led = "AmbInt/sensors/int_led"     # Intensity Topic
 
@@ -35,8 +35,8 @@ print("connecting to broker")
 client.connect(broker_address) #connect to broker
 client.loop_start() #start the loop
 
-print("Subscribing to topic", "AmbInt/sensors/pot")
-client.subscribe("AmbInt/sensors/pot")
+print("Subscribing to topic", topic_AI)
+client.subscribe(topic_AI)
 print("Subscribing to topic", "AmbInt/sensors/int")
 client.subscribe("AmbInt/sensors/int")
 print("Subscribing to topic", "AmbInt/sensors/temp")
